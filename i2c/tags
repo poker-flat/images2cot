@@ -1,0 +1,166 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.6	//
+Box	toolkit.py	/^class Box:$/;"	c
+Button	toolkit.py	/^class Button:$/;"	c
+Image	toolkit.py	/^class Image:$/;"	c
+Label	toolkit.py	/^class Label:$/;"	c
+MainWindow	toolkit.py	/^class MainWindow:$/;"	c
+Menu	toolkit.py	/^class Menu:$/;"	c
+MenuItem	toolkit.py	/^class MenuItem:$/;"	c
+Notebook	toolkit.py	/^class Notebook:$/;"	c
+Pack	toolkit.py	/^class Pack:$/;"	c
+ProgressBar	foo.py	/^class ProgressBar:$/;"	c
+Slider	toolkit.py	/^class Slider:$/;"	c
+Spinner	toolkit.py	/^class Spinner:$/;"	c
+Split	toolkit.py	/^class Split:$/;"	c
+Strut	toolkit.py	/^class Strut:$/;"	c
+Table	toolkit.py	/^class Table:$/;"	c
+Text	toolkit.py	/^class Text:$/;"	c
+TextField	toolkit.py	/^class TextField:$/;"	c
+TreeView	toolkit.py	/^class TreeView:$/;"	c
+Wrap	toolkit.py	/^class Wrap:$/;"	c
+__init__	foo.py	/^    def __init__(self):$/;"	m	class:ProgressBar
+__init__	toolkit.py	/^    def __init__(self, add=1, multiply=1, minValue=None, maxValue=None, currentValue=0, precision=3, noReset=False, buttonsRight=False, ticks=None, action=None, name=None):$/;"	m	class:Spinner
+__init__	toolkit.py	/^    def __init__(self, children=[]):$/;"	m	class:Menu
+__init__	toolkit.py	/^    def __init__(self, image=None, stock=None, fileName=None, xpmData=None):$/;"	m	class:Image
+__init__	toolkit.py	/^    def __init__(self, text=None, children=[], columns=2, rowSpacing=4, columnSpacing=_widgetSpacing):$/;"	m	class:Table
+__init__	toolkit.py	/^    def __init__(self, text=None, children=[], tabs=[], currentValue=0, tabsOnBottom=False, name=None):$/;"	m	class:Notebook
+__init__	toolkit.py	/^    def __init__(self, text=None, columns=1, reorderable=False, name=None):$/;"	m	class:TreeView
+__init__	toolkit.py	/^    def __init__(self, text=None, image=None, action=None, checked=None, line=False, submenu=None, enabled=True, name=None):$/;"	m	class:MenuItem
+__init__	toolkit.py	/^    def __init__(self, text=None, image=None, pressedText=None, pressedImage=None, showBorder=True, currentValue=0, enabled=True, minimumWidth=110, minimumHeight=48, action=None, name=None):  # vertical=False,  -- presently can't use because gtk version too old$/;"	m	class:Button
+__init__	toolkit.py	/^    def __init__(self, text=None, image=None, spacing=_widgetSpacing, rightJustified=False, wrappable=False, name=None):$/;"	m	class:Label
+__init__	toolkit.py	/^    def __init__(self, text=None, image=None, spacing=_widgetSpacing, values=[], persistentText=True, persistentHistory=True, historyLength=8, includeSpace=True, name=None):$/;"	m	class:TextField
+__init__	toolkit.py	/^    def __init__(self, text=None, ticks=None, minValue=0, maxValue=1, currentValue=0, precision=3, floatingLabel=False, vertical=False, label=None, labelWidth=64, enabled=True, action=None, name=None):$/;"	m	class:Slider
+__init__	toolkit.py	/^    def __init__(self, text=None, vertical=False, children=[], currentValue=None, name=None):$/;"	m	class:Split
+__init__	toolkit.py	/^    def __init__(self, text=None, vertical=False, children=[], spacing=_widgetSpacing, rightJustified=False):$/;"	m	class:Box
+__init__	toolkit.py	/^    def __init__(self, text=None, wrappable=True, persistentText=True, persistentScroll=True, name=None):$/;"	m	class:Text
+__init__	toolkit.py	/^    def __init__(self, text=None, xPack=None, yPack=None, child=None):$/;"	m	class:MainWindow
+__init__	toolkit.py	/^    def __init__(self, text=None, xPack=None, yPack=None, child=None):$/;"	m	class:Pack
+__init__	toolkit.py	/^    def __init__(self, widget):$/;"	m	class:Wrap
+__init__	toolkit.py	/^    def __init__(self, width=0, height=0):$/;"	m	class:Strut
+_buildHistory	toolkit.py	/^    def _buildHistory(self):$/;"	m	class:TextField
+_buildSpinnerImages	toolkit.py	/^def _buildSpinnerImages():$/;"	f
+_compatableType	toolkit.py	/^def _compatableType(subtype, supertype):$/;"	f
+_destroy	toolkit.py	/^    def _destroy(self):$/;"	m	class:Notebook
+_destroy	toolkit.py	/^    def _destroy(self, name):$/;"	m	class:TextField
+_didClick	toolkit.py	/^    def _didClick(self):$/;"	m	class:MenuItem
+_didEnter	toolkit.py	/^    def _didEnter(self):$/;"	m	class:Button
+_didLeave	toolkit.py	/^    def _didLeave(self):$/;"	m	class:Button
+_didPress	toolkit.py	/^    def _didPress(self):$/;"	m	class:Button
+_didRelease	toolkit.py	/^    def _didRelease(self):$/;"	m	class:Button
+_print	toolkit.py	/^def _print(thing):$/;"	f
+_provideFormat	toolkit.py	/^    def _provideFormat(self, value):$/;"	m	class:Slider
+_realized	toolkit.py	/^    def _realized(self):$/;"	m	class:Split
+_resetBorder	toolkit.py	/^    def _resetBorder(self):$/;"	m	class:Label
+_resetBorder	toolkit.py	/^    def _resetBorder(self):$/;"	m	class:TextField
+_sizeAllocated	toolkit.py	/^    def _sizeAllocated(self):$/;"	m	class:Split
+_truncatedValueString	toolkit.py	/^def _truncatedValueString(value, precision):$/;"	f
+_update	toolkit.py	/^    def _update(self, adjustment):$/;"	m	class:Slider
+_valueChanged	toolkit.py	/^    def _valueChanged(self, value):$/;"	m	class:Slider
+_willClose	toolkit.py	/^    def _willClose(self):$/;"	m	class:MainWindow
+add	toolkit.py	/^    def add(self, component=None):$/;"	m	class:MainWindow
+add	toolkit.py	/^    def add(self, component=None):$/;"	m	class:Pack
+add	toolkit.py	/^    def add(self, component=None):$/;"	m	class:Split
+add	toolkit.py	/^    def add(self, component=None, expand=False):   # padding not included, it's stupid$/;"	m	class:Box
+add	toolkit.py	/^    def add(self, component=None, expand=False, columns=1):$/;"	m	class:Table
+add	toolkit.py	/^    def add(self, component=None, tab=None):$/;"	m	class:Notebook
+add	toolkit.py	/^    def add(self, item=None):$/;"	m	class:Menu
+addMenu	toolkit.py	/^    def addMenu(self, menu):$/;"	m	class:MainWindow
+allowToClose	toolkit.py	/^    def allowToClose(self):$/;"	m	class:MainWindow
+append	toolkit.py	/^    def append(self, listOrTuple, parentRow=None):$/;"	m	class:TreeView
+destroy_progress	foo.py	/^    def destroy_progress(self, widget, data=None):$/;"	m	class:ProgressBar
+didChangeValue	toolkit.py	/^    def didChangeValue(self, value):$/;"	m	class:Slider
+didChangeValue	toolkit.py	/^    def didChangeValue(self, value):$/;"	m	class:Spinner
+didClick	toolkit.py	/^    def didClick(self, value):$/;"	m	class:Button
+didClick	toolkit.py	/^    def didClick(self, value=state):$/;"	m	class:MenuItem
+didLeftClick	toolkit.py	/^    def didLeftClick(self):$/;"	m	class:Spinner
+didPress	toolkit.py	/^    def didPress(self): pass$/;"	m	class:Button
+didRelease	toolkit.py	/^    def didRelease(self): pass$/;"	m	class:Button
+didResetClick	toolkit.py	/^    def didResetClick(self):$/;"	m	class:Spinner
+didRightClick	toolkit.py	/^    def didRightClick(self):$/;"	m	class:Spinner
+getBasicComponent	toolkit.py	/^    def getBasicComponent(self):$/;"	m	class:Box
+getBasicComponent	toolkit.py	/^    def getBasicComponent(self):$/;"	m	class:Button
+getBasicComponent	toolkit.py	/^    def getBasicComponent(self):$/;"	m	class:Image
+getBasicComponent	toolkit.py	/^    def getBasicComponent(self):$/;"	m	class:Label
+getBasicComponent	toolkit.py	/^    def getBasicComponent(self):$/;"	m	class:MainWindow
+getBasicComponent	toolkit.py	/^    def getBasicComponent(self):$/;"	m	class:Menu
+getBasicComponent	toolkit.py	/^    def getBasicComponent(self):$/;"	m	class:MenuItem
+getBasicComponent	toolkit.py	/^    def getBasicComponent(self):$/;"	m	class:Notebook
+getBasicComponent	toolkit.py	/^    def getBasicComponent(self):$/;"	m	class:Pack
+getBasicComponent	toolkit.py	/^    def getBasicComponent(self):$/;"	m	class:Slider
+getBasicComponent	toolkit.py	/^    def getBasicComponent(self):$/;"	m	class:Spinner
+getBasicComponent	toolkit.py	/^    def getBasicComponent(self):$/;"	m	class:Split
+getBasicComponent	toolkit.py	/^    def getBasicComponent(self):$/;"	m	class:Strut
+getBasicComponent	toolkit.py	/^    def getBasicComponent(self):$/;"	m	class:Table
+getBasicComponent	toolkit.py	/^    def getBasicComponent(self):$/;"	m	class:Text
+getBasicComponent	toolkit.py	/^    def getBasicComponent(self):$/;"	m	class:TextField
+getBasicComponent	toolkit.py	/^    def getBasicComponent(self):$/;"	m	class:TreeView
+getBasicComponent	toolkit.py	/^    def getBasicComponent(self):$/;"	m	class:Wrap
+getChildren	toolkit.py	/^    def getChildren():$/;"	m	class:Menu
+getHildonApplication	toolkit.py	/^def getHildonApplication():$/;"	f
+getImage	toolkit.py	/^    def getImage(self):$/;"	m	class:Label
+getImage	toolkit.py	/^    def getImage(self):$/;"	m	class:MenuItem
+getImage	toolkit.py	/^    def getImage(self):$/;"	m	class:TextField
+getModel	toolkit.py	/^    def getModel(self):$/;"	m	class:TreeView
+getPersistenceData	toolkit.py	/^def getPersistenceData(key, defaultVal=None, minVal=None, maxVal=None):$/;"	f
+getState	toolkit.py	/^    def getState(self):$/;"	m	class:Button
+getSubmenu	toolkit.py	/^    def getSubmenu(self):$/;"	m	class:MenuItem
+getText	toolkit.py	/^    def getText(self):$/;"	m	class:Label
+getText	toolkit.py	/^    def getText(self):$/;"	m	class:Text
+getText	toolkit.py	/^    def getText(self):$/;"	m	class:TextField
+getUnderlyingAlignment	toolkit.py	/^    def getUnderlyingAlignment(self):$/;"	m	class:MainWindow
+getUnderlyingAlignment	toolkit.py	/^    def getUnderlyingAlignment(self):$/;"	m	class:Pack
+getUnderlyingBox	toolkit.py	/^    def getUnderlyingBox(self):$/;"	m	class:Box
+getUnderlyingNotebook	toolkit.py	/^    def getUnderlyingNotebook(self):$/;"	m	class:Notebook
+getUnderlyingPack	toolkit.py	/^    def getUnderlyingPack(self):$/;"	m	class:MainWindow
+getUnderlyingPaned	toolkit.py	/^    def getUnderlyingPaned(self):$/;"	m	class:Split
+getUnderlyingSlider	toolkit.py	/^    def getUnderlyingSlider(self):$/;"	m	class:Slider
+getUnderlyingTable	toolkit.py	/^    def getUnderlyingTable(self):$/;"	m	class:Table
+getUnderlyingTextView	toolkit.py	/^    def getUnderlyingTextView(self):$/;"	m	class:Text
+getUnderlyingTreeView	toolkit.py	/^    def getUnderlyingTreeView(self):$/;"	m	class:TreeView
+getValue	toolkit.py	/^    def getValue(self):$/;"	m	class:MenuItem
+getValue	toolkit.py	/^    def getValue(self):$/;"	m	class:Notebook
+getValue	toolkit.py	/^    def getValue(self):$/;"	m	class:Spinner
+getValue	toolkit.py	/^    def getValue(self, adjustment=None):$/;"	m	class:Slider
+getVersion	toolkit.py	/^def getVersion():$/;"	f
+handleError	toolkit.py	/^def handleError(error):$/;"	f
+isEmpty	toolkit.py	/^    def isEmpty(self):$/;"	m	class:Image
+loadPersistenceData	toolkit.py	/^def loadPersistenceData(filename):$/;"	f
+main	foo.py	/^def main():$/;"	f
+popup	toolkit.py	/^    def popup(self, widget=None, x=None, y=None):$/;"	m	class:MenuItem
+progress_timeout	foo.py	/^def progress_timeout(pbobj):$/;"	f
+provideFormat	toolkit.py	/^    def provideFormat(self, value):$/;"	m	class:Slider
+provideFormat	toolkit.py	/^    def provideFormat(self, value):$/;"	m	class:Spinner
+savePersistenceData	toolkit.py	/^def savePersistenceData():$/;"	f
+selectionChanged	toolkit.py	/^    def selectionChanged(self, iters): pass$/;"	m	class:TreeView
+setEnabled	toolkit.py	/^    def setEnabled(self, enabled):$/;"	m	class:Button
+setEnabled	toolkit.py	/^    def setEnabled(self, enabled):$/;"	m	class:MenuItem
+setEnabled	toolkit.py	/^    def setEnabled(self, enabled):$/;"	m	class:Slider
+setImage	toolkit.py	/^    def setImage(self, image):$/;"	m	class:MenuItem
+setImage	toolkit.py	/^    def setImage(self, image=None, stock=None, fileName=None, xpmData=None):$/;"	m	class:Image
+setImage	toolkit.py	/^    def setImage(self, image=None, stock=None, fileName=None, xpmData=None):$/;"	m	class:Label
+setImage	toolkit.py	/^    def setImage(self, image=None, stock=None, fileName=None, xpmData=None):$/;"	m	class:TextField
+setLabel	toolkit.py	/^    def setLabel(self, label):$/;"	m	class:Slider
+setPersistenceData	toolkit.py	/^def setPersistenceData(key, val):$/;"	f
+setSize	toolkit.py	/^    def setSize(self, width=None, height=None):$/;"	m	class:Strut
+setState	toolkit.py	/^    def setState(self, state):$/;"	m	class:Button
+setSubmenu	toolkit.py	/^    def setSubmenu(self, submenu):$/;"	m	class:MenuItem
+setText	toolkit.py	/^    def setText(self, text=None):$/;"	m	class:Label
+setText	toolkit.py	/^    def setText(self, text=None):$/;"	m	class:Text
+setText	toolkit.py	/^    def setText(self, text=None):$/;"	m	class:TextField
+setText	toolkit.py	/^    def setText(self,text=None):$/;"	m	class:MainWindow
+setValue	toolkit.py	/^    def setValue(self, value):$/;"	m	class:MenuItem
+setValue	toolkit.py	/^    def setValue(self, value):$/;"	m	class:Notebook
+setValue	toolkit.py	/^    def setValue(self, value):$/;"	m	class:Slider
+setValue	toolkit.py	/^    def setValue(self, value):$/;"	m	class:Spinner
+setVerbose	toolkit.py	/^def setVerbose(val=True):$/;"	f
+show	toolkit.py	/^    def show(self):$/;"	m	class:MainWindow
+testLibrary	toolkit.py	/^def testLibrary():$/;"	f
+toggle_activity_mode	foo.py	/^    def toggle_activity_mode(self, widget, data=None):$/;"	m	class:ProgressBar
+toggle_orientation	foo.py	/^    def toggle_orientation(self, widget, data=None):$/;"	m	class:ProgressBar
+toggle_show_text	foo.py	/^    def toggle_show_text(self, widget, data=None):$/;"	m	class:ProgressBar
+willClose	toolkit.py	/^    def willClose(self):$/;"	m	class:MainWindow
