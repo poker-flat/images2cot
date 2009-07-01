@@ -1,0 +1,50 @@
+Images2CoT
+
+Author: Jonathan Sawyer
+Copyright (C) 2009, Geographic Information Network of Alaska,
+                    University of Alaska Fairbanks
+
+Images2CoT is a program designed to read the exif headers of a list of jpeg
+images and compile the information into a Cursor on Target XML feed used to
+display data into SwathViewer (http://sv.gina.alaska.edu/).
+
+INSTALLING
+==========
+
+GIT repository checkout (requires git. See http://http://git-scm.com/ ):
+
+Run this as a non-priviledged user:
+
+    $ git clone git@git.gina.alaska.edu:images2cot/mainline.git images2cot
+
+A folder called `images2cot' will be copied into your current working
+directory.
+
+Since Images2CoT is a Python program that uses the PyGTK+ wrapper for it's
+GUI, you will need to ensure you have:
+
+    Python 2.4+  ( See http://python.org/ )
+    PyGTK 2.0+   ( See http://www.pygtk.org/ )
+
+Images2CoT also requires that you download, compile, and install and
+accessible in your $PATH:
+
+    jhead 2.87+  ( See http://www.sentex.net/~mwandel/jhead/ )
+
+cd into the images2cot directory:
+
+    $ cd images2cot/
+    $ ls
+    i2c/ images2cot/ README setup.py
+
+As root, run setup.py:
+
+    # python setup.py install
+
+Now, cd into i2c/
+    
+    $ cd i2c/
+
+You are ready to run the application:
+
+    $ ./i2c.py
