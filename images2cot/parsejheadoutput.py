@@ -37,21 +37,17 @@ class JheadParser:
     GPSTimeStamp = None
     GPSDateStamp = None
     GPSVersion = '2.2.0.0'
-    
+
     VertexOffset = 0.001717906999999
-    
+
     #
     # Public methods
     #
-    
+
     def parse_block(self, block):
         ar = block.split('\n')
         for line in ar:
-            print "parsing", line,
-            if self.parse(line+'\n'):
-                print "parsed"
-            else:
-                print "not parsed"
+            self.parse(line+'\n')
 
     def parse(self, line):
         if self.__parse_Filename(line): return True
@@ -64,19 +60,20 @@ class JheadParser:
         if self.__parse_GPSTimeStamp(line): return True
         if self.__parse_GPSDateStamp(line): return True
         return False
-    
-    def write_xml(self):
+
+    def write_xml(self, file=True):
         self.__combine_DateTimeStamp()
         if not self.GPSLatitude or not self.GPSLongitude:
             return False
-        
-        print 'Writing XML...'
+
+        #print 'Writing XML...'
         try:
-            xmlfile = open('xml_file.xml', 'a+')
+            if file:
+                xmlfile = open('xml_file.xml', 'a+')
         except:
-            print 'Could not open XML file for writing. Exiting.'
+            #print 'Could not open XML file for writing. Exiting.'
             raise SystemExit
-        
+
         txt = "<?xml version=\"1.0\" standalone=\"yes\"?>\n\
 <event xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" uid=\"" + self.CameraMake + ' ' + self.CameraModel + "\" version=\"2.0\" how=\"m-g\" time=\"" + self.DateTime + "\" qos=\"0-r-c\" stale=\"" + self.DateTime + "\" type=\"b-m-p-s-p-i\" start=\"" + self.DateTime + "\">\n\
   <detail>\n\
@@ -112,11 +109,12 @@ class JheadParser:
   <point lat=\"" + str(self.GPSLatitude) + "\" lon=\"" + str(self.GPSLongitude) + "\" hae=\"" + str(self.GPSAltitude) + "\" le=\"9999.99\" ce=\"4\" />\n\
 </event>\n"
 
+        if file:
+            xmlfile.write(txt)
+            xmlfile.close()
+        
+        return txt
 
-        xmlfile.write(txt)
-        xmlfile.close()
-        return True
-    
     #
     # Private methods
     #
@@ -127,11 +125,11 @@ class JheadParser:
     def __parse_Filename(self, line):
         match = re.match(self.re_Filename, line)
         if match:
-            print 'File name:',match.group(1)
+            #print 'File name:',match.group(1)
             self.Filename = match.group(1)
             return True
         return False
-    
+
     def __parse_DateTime(self, line):
         match = re.match(self.re_DateTime, line)
         if match:
@@ -141,7 +139,7 @@ class JheadParser:
             arr = txt.split()
             arr[0] = '-'.join(arr[0].split(':'))
             txt = 'T'.join(arr)+'.76Z'
-            print 'Date/Time:',txt
+            #print 'Date/Time:',txt
             self.DateTime = txt
             return True
         return False
@@ -155,7 +153,7 @@ class JheadParser:
             second = arr[2].split('/')
             second = int(second[0]) / int(second[1])
             self.GPSTimeStamp = str(hour) + ':' + str(minute) + ':' + str(second)
-            print "GPSTimeStamp:", self.GPSTimeStamp
+            #print "GPSTimeStamp:", self.GPSTimeStamp
             return True
         return False
 
@@ -163,7 +161,7 @@ class JheadParser:
         match = re.match(self.re_GPSDateStamp, line)
         if match and not re.match(r'\?', match.group(1)):
            self.GPSDateStamp = match.group(1)
-           print "GPSDateStamp:", self.GPSDateStamp
+           #print "GPSDateStamp:", self.GPSDateStamp
            return True
         return False
 
@@ -171,47 +169,47 @@ class JheadParser:
         match = re.match(self.re_GPSLatitude, line)
         if match and not re.match(r'\?', match.group(1)):
             dec = self.__parse_DMS_to_decimal(match.group(1))
-            print 'GPSLatitude: %(#).15f' % {'#': dec}
+            #print 'GPSLatitude: %(#).15f' % {'#': dec}
             self.GPSLatitude = dec
             return True
         return False
-    
+
     def __parse_GPSLongitude(self, line):
         match = re.match(self.re_GPSLongitude, line)
         if match and not re.match(r'\?', match.group(1)):
             dec = self.__parse_DMS_to_decimal(match.group(1))
-            print 'GPSLongitude: %(#).15f' % {'#': dec}
+            #print 'GPSLongitude: %(#).15f' % {'#': dec}
             self.GPSLongitude = dec
             return True
         return False
-    
+
     def __parse_GPSAltitude(self, line):
         """line is in the form of `208.0m`. We need this into float format."""
         match = re.match(self.re_GPSAltitude, line)
         if match and not re.match(r'\?', match.group(1)):
             txt = match.group(1)
             height = float(txt[0:-1])
-            print 'GPSAltitude:',height,'m'
+            #print 'GPSAltitude:',height,'m'
             self.GPSAltitude = height
             return True
         return False
-    
+
     def __parse_CameraMake(self, line):
         match = re.match(self.re_CameraMake, line)
         if match and not re.match(r'\?', match.group(1)):
-            print 'Camera make:',match.group(1)
+            #print 'Camera make:',match.group(1)
             self.CameraMake = match.group(1)
             return True
         return False
-    
+
     def __parse_CameraModel(self, line):
         match = re.match(self.re_CameraModel, line)
         if match and not re.match(r'\?', match.group(1)):
-            print 'Camera model:',match.group(1)
+            #print 'Camera model:',match.group(1)
             self.CameraModel = match.group(1)
             return True
         return False
-    
+
     def __parse_ExposureTime(self, line):
         """line is in the form of `0.0001 s  (1/8000)`, we need just the
         exposure time in seconds"""
@@ -220,17 +218,17 @@ class JheadParser:
             txt = match.group(1)
             arr = txt.split()
             sec = float(arr[0])
-            print 'Exposure time:',sec,'s'
+            #print 'Exposure time:',sec,'s'
             self.ExposureTime = sec
             return True
         return False
-    
+
     def __parse_DMS_to_decimal(self, line):
         """line is in the form of `N 64d 51.5500m  0s`, we need this in decimal
         notation, i.e., `64.8473`"""
         txt = line.split()
         sign = 0
-        
+
         pos = txt[0]
         if pos == 'N' or pos == 'E':
             sign = 1
@@ -238,7 +236,7 @@ class JheadParser:
             sign = -1
         if sign == 0:
             return None
-        
+
         # convert '147d' to the integer 147
         deg = int((txt[1])[0:-1])
         # convert '51.5500m' to the float 51.5500
@@ -254,36 +252,3 @@ class JheadParser:
         # return the decimal number with the proper sign as noted above
         # if sign is 0, the result is 0, and thus the string is ill formed.
         return dec_dms*sign
-    
-    ##################
-    ###End of class###
-    ##################
-
-
-#### loop it for reading
-###reading = True
-###count = 0
-###while reading:
-###    parser = JheadParser()
-###        
-###    # each block (per jpeg) is separated by a new line, so we loop over each
-###    # block and store it in JheadParser object after each block read, we write
-###    # out to the XML file the "event" of the frame capture.
-###    while True:
-###        if line == "\n" or not line:
-###            parser.write_xml()
-###            print '--------------'
-###            break
-###        
-###        parser.parse(line)
-###        line = f.readline()
-###    
-####    count+=1
-####    if count > 3:
-####        break
-###    
-###    line = f.readline()
-###    if not line: reading = False
-###    
-####print line
-###f.close()

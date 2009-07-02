@@ -6,6 +6,7 @@ import images_list
 import i2c_buttons
 import i2c_main
 import parsejheadoutput
+import text_window
 
 def AboutDialog(window):
     return about_dialog.AboutDialog(window)
@@ -21,3 +22,6 @@ def I2cButtons():
 
 def JheadParser():
     return parsejheadoutput.JheadParser()
+
+def TextWindow(title=None, text=None):
+    return text_window.TextWindow(title, text)

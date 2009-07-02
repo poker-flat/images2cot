@@ -1,4 +1,4 @@
-import os, datetime
+import os, datetime, commands
 
 PYGTKVERSION = "2.0"
 
@@ -13,6 +13,8 @@ try:
     import gtk
 except:
     sys.exit(1)
+
+import images2cot
 
 class I2cButtons:
     def __init__(self):
@@ -32,7 +34,7 @@ class I2cButtons:
 
         return btn_quit
 
-    def get_btn_save(self):
+    def get_btn_save(self, listview=None, entry=None):
         """
         asdf
         """
@@ -42,14 +44,50 @@ class I2cButtons:
         btn_save.set_image(img)
         btn_save.show()
 
-        btn_save.connect('clicked', self.btn_save_clicked)
+        btn_save.connect('clicked', self.btn_save_clicked, listview, entry)
 
         return btn_save
 
-    def btn_save_clicked(self, widget=None):
-        print 'btn_save_clicked'
+    def btn_save_clicked(self, widget=None, listview=None, entry=None):
+        if entry:
+            path = entry.get_text()
 
-    def get_btn_preview(self):
+            if entry.get_text:
+                import os
+
+                fhandle = open(path, 'w')
+
+                if not fhandle:
+                    return False
+
+        if listview:
+            liststore = listview.get_model()
+
+            iter = liststore.get_iter_first()
+
+            txt = '' 
+
+            while iter:
+                imagepath = liststore.get_value(iter, 0)
+                
+                iter = liststore.iter_next(iter)
+
+                raw = liststore.exif_dict[imagepath]
+
+                if raw != 'Error.' and raw:
+                    parser = images2cot.JheadParser()
+                    parser.parse_block(raw)
+
+                    parsed = parser.write_xml(file=False)
+
+                    if parsed:
+                        txt = txt + parsed
+
+            fhandle.write(txt)
+
+            fhandle.close()
+
+    def get_btn_preview(self, listview=None):
         """
         asdf
         """
@@ -59,12 +97,35 @@ class I2cButtons:
         btn_preview.set_image(img)
         btn_preview.show()
 
-        btn_preview.connect('clicked', self.btn_preview_clicked)
+        btn_preview.connect('clicked', self.btn_preview_clicked, listview)
 
         return btn_preview
 
-    def btn_preview_clicked(self, widget=None):
-        print 'btn_preview_clicked'
+    def btn_preview_clicked(self, widget=None, listview=None):
+        if listview:
+            liststore = listview.get_model()
+
+            iter = liststore.get_iter_first()
+
+            txt = '' 
+
+            while iter:
+                imagepath = liststore.get_value(iter, 0)
+                
+                iter = liststore.iter_next(iter)
+
+                raw = liststore.exif_dict[imagepath]
+
+                if raw != 'Error.' and raw:
+                    parser = images2cot.JheadParser()
+                    parser.parse_block(raw)
+
+                    parsed = parser.write_xml(file=False)
+
+                    if parsed:
+                        txt = txt + parsed
+
+            new_window = images2cot.TextWindow("XML Preview", txt)
 
     def get_btn_browse(self):
         """
@@ -83,7 +144,7 @@ class I2cButtons:
     def btn_browse_clicked(self, widget=None):
         print 'btn_browse_clicked'
 
-    def get_btn_remove(self, list=None):
+    def get_btn_remove(self, list=None, i2c=None):
         """
         asdf
         """
@@ -93,11 +154,11 @@ class I2cButtons:
         btn_remove.set_image(img)
         btn_remove.show()
 
-        btn_remove.connect('clicked', self.btn_remove_clicked, list)
+        btn_remove.connect('clicked', self.btn_remove_clicked, list, i2c)
 
         return btn_remove
 
-    def btn_remove_clicked(self, widget=None, list=None):
+    def btn_remove_clicked(self, widget=None, list=None, i2c=None):
         """
         This function is called when the 'Remove' button is clicked. The
         action sends a gtk.ListView object as a parameter.
@@ -123,7 +184,6 @@ class I2cButtons:
 
             # Remove the item from the list pointed at by `iter'.
             liststore.remove(iter)
-
 
     def get_btn_add(self, list=None):
         """
@@ -183,6 +243,8 @@ class I2cButtons:
 
         # Grab the TreeModel so we can work with the data
         liststore = list.get_model()
+
+        list.set_model(None)
 
         # Grab the first element in the TreeModel
         iter = liststore.get_iter_first()
@@ -246,3 +308,45 @@ class I2cButtons:
                               date_mod,
                               date_view
                               ])
+            
+            if not liststore.exif_dict.has_key(file):
+                status, output = commands.getstatusoutput("jhead -v %s" % file)
+
+                if status == 0:
+                    # exif dict
+                    liststore.exif_dict[file] = output
+
+                    # info dict
+                    parser = images2cot.JheadParser()
+                    parser.parse_block(liststore.exif_dict[file])
+
+                    info = """Filename: %s
+
+GPS Info
+=============
+GPS Latitude: %s
+GPS Longitude: %s
+GPS Altitude: %s
+GPS Date and Time: %s %s
+
+Misc
+=============
+Camera Make: %s
+Camera Model: %s
+Exposure Time: %s""" % (parser.Filename,
+                        parser.GPSLatitude,
+                        parser.GPSLongitude,
+                        parser.GPSAltitude,
+                        parser.GPSDateStamp, parser.GPSTimeStamp,
+                        
+                        parser.CameraMake,
+                        parser.CameraModel,
+                        parser.ExposureTime,
+                        )
+                    liststore.info_dict[file] = info
+ 
+                else:
+                    liststore.exif_dict[file] = 'Error.'
+                    liststore.info_dict[file] = 'Error.'
+
+            list.set_model(liststore)

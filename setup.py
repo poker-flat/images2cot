@@ -11,5 +11,5 @@ setup(
     url = 'http://gina.alaska.edu/',
     license = 'MIT License',
     packages=['images2cot'],
-    package_dir={'mypkg': 'images2cot'},
+    package_dir={'images2cot': 'images2cot'},
     )

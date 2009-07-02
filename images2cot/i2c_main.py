@@ -82,7 +82,7 @@ class I2cMain:
 
         buttons = images2cot.I2cButtons()
         self.btn_add = buttons.get_btn_add(self.lst_images)
-        self.btn_remove = buttons.get_btn_remove(self.lst_images)
+        self.btn_remove = buttons.get_btn_remove(self.lst_images, self)
 
         self.bbox_images.pack_start(self.btn_add, False, False, 2)
         self.bbox_images.pack_start(self.btn_remove, False, False, 2)
@@ -172,10 +172,10 @@ class I2cMain:
         self.bbox.set_layout(gtk.BUTTONBOX_END)
         self.bbox.set_spacing(5)
         #
-        self.btn_preview = buttons.get_btn_preview()
+        self.btn_preview = buttons.get_btn_preview(self.lst_images)
         self.bbox.add(self.btn_preview)
         #
-        self.btn_save = buttons.get_btn_save()
+        self.btn_save = buttons.get_btn_save(self.lst_images, self.entry)
         self.bbox.add(self.btn_save)
         #
         self.btn_quit = buttons.get_btn_quit()

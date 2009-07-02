@@ -14,7 +14,7 @@ except:
 
 import images2cot
 
-import commands
+import commands, gc
 
 class ImagesList:
 
@@ -66,6 +66,9 @@ class ImagesList:
 
         self.parent = parent
 
+        self.liststore.exif_dict = {}
+        self.liststore.info_dict = {}
+
     def get(self):
         return self.listview
 
@@ -102,11 +105,12 @@ class ImagesList:
             #print imagepath
 
             if self.parent.frm_img_prev:
-                print 'frm-img-prev'
                 img = self.parent.frm_img_prev.get_child()
                 self.parent.frm_img_prev.remove(img)
-                img.clear()
-                img = None
+
+                del img
+                gc.collect()
+                
                 img = gtk.Image()
                 try:
                     img.set_from_pixbuf(
@@ -115,7 +119,6 @@ class ImagesList:
                         ).scale_simple(150,150,gtk.gdk.INTERP_BILINEAR)
                     )
                 except:
-                    print 'exception occured'
                     img.set_from_stock(gtk.STOCK_MISSING_IMAGE, gtk.ICON_SIZE_DIALOG)
                 img.show()
 
@@ -126,50 +129,19 @@ class ImagesList:
                 
                 buf = text_view.get_buffer()
 
-                status, output = commands.getstatusoutput("jhead -v %s" % imagepath)
-
-                if status == 0:
-                    buf.set_text(output)
+                if liststore.exif_dict.has_key(imagepath):
+                    buf.set_text(liststore.exif_dict[imagepath])
                 else:
+                    print 'liststore.exif_dict has not key. Error.'
                     buf.set_text('Error.')
 
-            if self.parent.frm_img_info and status == 0:
+            if self.parent.frm_img_info:
                 text_info = self.parent.frm_img_info.get_child().get_child()
 
                 buf = text_info.get_buffer()
 
-                parser = images2cot.JheadParser()
-                parser.parse_block(output)
-
-                info = """Filename: %s
-
-GPS Info
-=============
-GPS Latitude: %s
-GPS Longitude: %s
-GPS Altitude: %s
-GPS Date and Time: %s %s
-
-Misc
-=============
-Camera Make: %s
-Camera Model: %s
-Exposure Time: %s""" % (parser.Filename,
-                        parser.GPSLatitude,
-                        parser.GPSLongitude,
-                        parser.GPSAltitude,
-                        parser.GPSDateStamp, parser.GPSTimeStamp,
-                        
-                        parser.CameraMake,
-                        parser.CameraModel,
-                        parser.ExposureTime,
-                        )
-
-                buf.set_text(info)
-
-            else:
-                text_info = self.parent.frm_img_info.get_child().get_child()
-
-                buf = text_info.get_buffer()
-
-                buf.set_text('Error.')
+                if liststore.info_dict.has_key(imagepath):
+                    buf.set_text(liststore.info_dict[imagepath])
+                else:
+                    print 'liststore.info_dict has not key. Error.'
+                    buf.set_text('Error.')
